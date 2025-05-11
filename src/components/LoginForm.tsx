@@ -63,7 +63,7 @@ const LoginForm: React.FC = () => {
       if (success) {
         console.log('Login successful, navigating to dashboard');
         // If login is successful, navigate to dashboard
-        navigate('/dashboard');
+        navigate('/portal');
       } else {
         console.error('Login failed - invalid credentials');
         setError('Invalid login details. Please check your information and try again.');
@@ -188,14 +188,7 @@ const LoginForm: React.FC = () => {
               )}
             </button>
             
-            {/* Hidden in production, just for testing */}
-            <button
-              type="button"
-              onClick={fillTestData}
-              className="text-xs text-gray-400 hover:text-white text-center mt-2"
-            >
-              Fill test data
-            </button>
+           
           </form>
         )}
       </div>

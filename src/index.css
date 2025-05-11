@@ -586,7 +586,7 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   padding: 24px;
-  height: 55vh; /* Adjusted from 50vh for a little longer sidebar */
+  height: 60vh; /* Adjusted from 50vh for a little longer sidebar */
 }
 
 /* Background image with overlay */

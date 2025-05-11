@@ -17,7 +17,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   // Check if we're on the dashboard or other authenticated routes
   const isAuthenticatedRoute = location.pathname === '/dashboard' || 
                               location.pathname === '/policies' ||
-                              location.pathname === '/quotes';
+                              location.pathname === '/quotes' ||
+                              location.pathname === '/portal';
   
   // Show UserNavbar for authenticated users on dashboard routes
   const showUserNavbar = isAuthenticated && isAuthenticatedRoute;

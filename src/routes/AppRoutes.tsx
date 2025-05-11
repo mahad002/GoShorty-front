@@ -28,14 +28,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 };
 
 // Placeholder components for policies and quotes pages
-const PoliciesPage = () => (
-  <div className="p-8 bg-[#1d2130] rounded-lg m-4 text-white min-h-[400px]">
-    <h1 className="text-2xl font-bold mb-6">Your Policies</h1>
-    <p className="text-lg">You currently have no active policies.</p>
-  </div>
-);
+// const PoliciesPage = () => ( // No longer needed, Dashboard will handle /policies
+//   <div className="p-8 bg-[#1d2130] rounded-lg m-4 text-white min-h-[400px]">
+//     <h1 className="text-2xl font-bold mb-6">Your Policies</h1>
+//     <p className="text-lg">You currently have no active policies.</p>
+//   </div>
+// );
 
-const QuotesPage = () => (
+const QuotesPage = () => ( // This can remain if /quotes is a separate page structure
   <div className="p-8 bg-[#1d2130] rounded-lg m-4 text-white min-h-[400px]">
     <h1 className="text-2xl font-bold mb-6">Your Quotes</h1>
     <p className="text-lg">You currently have no saved quotes.</p>
@@ -47,7 +47,7 @@ const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route 
-        path="/dashboard" 
+        path="/portal" 
         element={
           <ProtectedRoute>
             <Dashboard />
@@ -56,9 +56,9 @@ const AppRoutes: React.FC = () => {
       />
       <Route 
         path="/policies" 
-        element={
+        element={ // Changed to render Dashboard for /policies
           <ProtectedRoute>
-            <PoliciesPage />
+            <Dashboard />
           </ProtectedRoute>
         } 
       />
@@ -66,7 +66,10 @@ const AppRoutes: React.FC = () => {
         path="/quotes" 
         element={
           <ProtectedRoute>
-            <QuotesPage />
+            {/* Decide if Dashboard should also handle /quotes or if QuotesPage is a distinct layout */}
+            {/* For now, assuming Dashboard can also handle /quotes similarly if desired, or use QuotesPage */}
+            <Dashboard />
+            {/* <QuotesPage /> */}
           </ProtectedRoute>
         } 
       />
