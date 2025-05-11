@@ -718,6 +718,7 @@ body {
 
 .dashboard-sidebar-prev-grid {
   display: grid;
+  padding: 12px;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }

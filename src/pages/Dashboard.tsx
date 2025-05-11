@@ -123,26 +123,51 @@ const Dashboard: React.FC = () => {
             Or click on one of your previous registrations:
           </div>
           <div className="dashboard-sidebar-prev-grid">
-            <div className="dashboard-sidebar-prev-pill">
-              <img src={ukRegIcon} alt="UK reg" />
-              <span className='text-xl'>FV64KTK</span>
+          
+          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
+            <div className="bg-blue-600 text-white text-xs  h">
+            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
             </div>
-            <div className="dashboard-sidebar-prev-pill">
-              <img src={ukRegIcon} alt="UK reg" />
-              <span className='text-xl'>N795ENB</span>
+            <div className="flex items-center space-x-2 p-1">
+           
+              <span>N795ENB</span>
             </div>
-            <div className="dashboard-sidebar-prev-pill">
-              <img src={ukRegIcon} alt="UK reg" />
-              <span className='text-xl'>VUI3PXY</span>
+          </div>
+
+          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
+            <div className="bg-blue-600 text-white text-xs  h">
+            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
             </div>
-            <div className="dashboard-sidebar-prev-pill">
-              <img src={ukRegIcon} alt="UK reg" />
-              <span className='text-xl'>VDI4TKE</span>
+            <div className="flex items-center space-x-2 p-1">
+           
+              <span>VUI3PXY</span>
             </div>
+          </div>
+
+          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
+            <div className="bg-blue-600 text-white text-xs  h">
+            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
+            </div>
+            <div className="flex items-center space-x-2 p-1">
+           
+              <span>VUI3PXY</span>
+            </div>
+          </div>
+
+          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
+            <div className="bg-blue-600 text-white text-xs  h">
+            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
+            </div>
+            <div className="flex items-center space-x-2 p-1">
+           
+              <span>VUI3PXY</span>
+            </div>
+          </div>
+         
           </div>
       </div>
     </div>
   );
 };
 
-export default Dashboard; 
+export default Dashboard;
