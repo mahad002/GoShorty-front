@@ -514,3 +514,362 @@ body {
     @apply font-semibold;
   }
 }
+
+/* Dashboard styles */
+.base-card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.bg-gs-tarmac {
+  background-color: #1d2130;
+  color: white;
+}
+
+.dashboard-top-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+}
+
+.dashboard-welcome-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard-welcome-text img {
+  height: 3rem;
+  width: 3rem;
+}
+
+.dashboard-main-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dashboard-main-link {
+  padding-bottom: 0.25rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.dashboard-main-link:hover {
+  border-bottom: 2px solid #ce43ff;
+}
+
+.dashboard-main-link-active {
+  border-bottom: 2px solid #ce43ff;
+}
+
+.dashboard-logout-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.dashboard-logout-link img {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #4181ff;
+}
+
+/* --- Dashboard Sidebar Custom Styles --- */
+.dashboard-sidebar {
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  padding: 24px;
+  height: 55vh; /* Adjusted from 50vh for a little longer sidebar */
+}
+
+/* Background image with overlay */
+.dashboard-sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/src/assets/flexible-bg.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -2;
+}
+
+/* Overlay with padding */
+.dashboard-sidebar::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  background-color: #22273c;
+  opacity: 0.85;
+  z-index: -1;
+}
+
+.dashboard-sidebar-gradient {
+  display: none; /* Remove gradient line */
+}
+
+.dashboard-sidebar-header {
+  font-family: 'TT Norms Pro Serif DemiBold', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.dashboard-sidebar-instructions {
+  color: #D1D5DB;
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.dashboard-sidebar-input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.dashboard-sidebar-flag-pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 0;
+  width: 60px;
+  background-color: #FFFFFF;
+  border-right: 1px solid #E5E7EB;
+}
+
+.dashboard-sidebar-flag-pill img {
+  height: 26px;
+  width: auto;
+}
+
+.dashboard-sidebar-input {
+  width: 100%;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 0;
+  padding: 10px 16px 10px 66px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #222;
+  text-align: center;
+  outline: none;
+  box-shadow: none;
+}
+.dashboard-sidebar-input::placeholder {
+  color: #A3A3A3;
+  font-weight: 500;
+}
+
+.dashboard-sidebar-btn {
+  background: #50E6A5;
+  color: #1d2130;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+.dashboard-sidebar-btn:hover {
+  background: #3cd28f;
+}
+
+.dashboard-sidebar-prev-label {
+  color: #D1D5DB;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dashboard-sidebar-prev-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.dashboard-sidebar-prev-pill {
+  background: #EFBC47;
+  color: #222;
+  border-radius: 0;
+  padding: 4px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  font-family: monospace;
+}
+.dashboard-sidebar-prev-pill img {
+  height: 1.5em;
+  margin-right: 0.25em;
+}
+
+/* New Styles for "New Quote" Panel */
+.dashboard-card-inner {
+  padding: 1.5rem; /* Equivalent to p-6 in Tailwind, adjust as needed */
+  text-align: center; /* For overall centering if not handled by child elements */
+}
+
+.dashboard-card-inner .sub-header-text { /* Assuming sub-header-text is already defined, ensure it's centered or add text-align: center */
+  margin-bottom: 0.75rem; /* Equivalent to mb-3 */
+}
+
+.dashboard-card-inner p {
+  color: #D1D5DB; /* Light gray text, adjust as needed */
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 0.75rem; /* mb-3 */
+}
+
+.form-registration {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* Adjust as needed to match image */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem; /* Default spacing, adjust as needed */
+  display: flex; /* For inline alignment of image and input/div */
+  align-items: center; /* Vertically align items */
+  background-color: #FFFFFF; /* White background for the input area */
+  border: 1px solid #E5E7EB; /* Light border */
+}
+
+.form-registration-image {
+  height: 40px; /* Adjust based on actual image dimensions and desired size */
+  padding: 0 10px; /* Spacing around the flag image */
+  border-right: 1px solid #E5E7EB; /* Separator line */
+  background-color: #FFFFFF; /* Ensure flag part has white background */
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.form-registration-input {
+  width: 100%;
+  background: #FFFFFF;
+  border: none;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 1.5rem; /* Increased size */
+  color: #222;
+  text-align: center; /* Center placeholder and input text */
+  outline: none;
+  box-shadow: none;
+  text-transform: uppercase; /* Ensure text is uppercase like in image */
+}
+.form-registration-input::placeholder {
+  color: #A3A3A3;
+  font-weight: 700; /* Made bolder */
+  font-size: 1.5rem; /* Increased size */
+  text-transform: uppercase;
+}
+
+.dashboard-card-inner .base-button.button-style-primary {
+  /* base-button, button-style-primary, base-button-full-width, base-button-small-text, mt-4 are existing/utility classes */
+  /* Ensure button-style-primary provides the green background and dark text */
+  /* base-button-full-width should make it take available width up to a max */
+  /* base-button-small-text might need adjustment if text size differs */
+  margin-top: 1rem; /* mt-4 */
+  padding: 12px 24px; /* Default padding, adjust if needed */
+  font-size: 1rem; /* Adjust if base-button-small-text isn't sufficient */
+  display: flex; /* To align text and icon */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Space between text and icon */
+  max-width: 300px; /* Match input field width */
+  margin-left: auto; /* Center button */
+  margin-right: auto; /* Center button */
+  /* width: 100%; is provided by base-button-full-width class */
+}
+
+.dashboard-card-inner .base-button.button-style-primary svg {
+  width: 1em; /* Control icon size relative to font */
+  height: 1em;
+}
+
+
+.dashboard-registration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 12px; /* Gap between items, adjust as needed */
+  margin-top: 0.75rem; /* my-3 implies margin top and bottom, this is for spacing above */
+}
+
+.form-registration-solid {
+  background: #EFBC47; /* Yellow background for previous plates */
+  color: #1d2130; /* Dark text color */
+  padding: 8px 4px; /* Adjust padding to match image */
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem; /* Adjust font size to match image */
+  letter-spacing: 0.05em; /* Slight letter spacing */
+  font-family: monospace; /* Monospace font for reg plates */
+  width: 100%; /* Make it fill the cell */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-registration-clickable {
+  cursor: pointer;
+}
+
+/* Ensure .base-card with background image is correctly styled if not already */
+.base-card[style*="flexible-bg.svg"] {
+  background-size: cover;
+  background-position: center;
+  position: relative; /* Needed for potential pseudo-elements if an overlay is desired like in dashboard-sidebar */
+}
+
+/* If an overlay is needed for the background image to match the darkness of the original sidebar */
+.base-card[style*="flexible-bg.svg"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1d2130; /* Tarmac color */
+  opacity: 0.85; /* Adjust opacity to match desired darkness */
+  z-index: 0; /* Ensure it's behind the content */
+}
+
+.dashboard-card-inner {
+  position: relative; /* Ensure content is above the pseudo-element overlay */
+  z-index: 1;
+}

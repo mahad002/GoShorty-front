@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRightCircle as CircleArrowRight } from 'lucide-react';
 import paymentMethodsIcon from '../assets/payment-methods.svg';
+import logoDark from '../assets/logo_main_dark.png';
 
 const Footer: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const Footer: React.FC = () => {
           <div className="footer-left-column">
             <Link to="/" className="block">
               <img
-                src="https://your.goshorty.co.uk/images/logo_main_dark.png"
+                src={logoDark}
                 alt="Dark version of GoShorty logo" 
                 className="footer-logo-image"
               />
@@ -29,10 +30,10 @@ const Footer: React.FC = () => {
             <div className="footer-sub-content-grid">
               <div className="footer-sub-content-grid-left">
                 <div className="footer-links">
-                  <div>Privacy Policy</div>
-                  <div>Cookie Policy</div>
-                  <div>Terms of Business</div>
-                  <div>Terms of Use</div>
+                  <a href="https://goshorty.co.uk/privacy-policy/" className="footer-link">Privacy Policy</a>
+                  <a href="https://goshorty.co.uk/cookie-policy/" className="footer-link">Cookie Policy</a>
+                  <a href="https://goshorty.co.uk/terms-of-business/" className="footer-link">Terms of Business</a>
+                  <a href="https://goshorty.co.uk/terms-of-use/" className="footer-link">Terms of Use</a>
                 </div>
                 <p className="footer-disclaimer-text">
                   We are a UK based insurance broker and we are authorised and regulated by the Financial Conduct Authority under reference number 751221.
