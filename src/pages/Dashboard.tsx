@@ -60,18 +60,18 @@ const Dashboard: React.FC = () => {
   } else {
     // Default dashboard view (path /dashboard or any other unspecified route handled by Dashboard component)
     mainContent = (
-      <div className="px-28 py-5 bg-[#1d1e2c]">
+      <div className="px-4 desktop-only:px-28 py-5 bg-[#1d1e2c]">
         <div className="flex items-center justify-between border-b border-gray-700 pb-4">
-          <h1 className="text-2xl font-bold text-white">Your GoShorty portal</h1>
-          <span className="text-sm text-gray-400">{formattedDate}</span>
+          <h1 className="text-xl desktop-only:text-2xl font-bold text-white">Your GoShorty portal</h1>
+          <span className="text-xs desktop-only:text-sm text-gray-400">{formattedDate}</span>
         </div>
         <div className="mt-6">
-          <h2 className="text-xl font-semibold mb-1 text-white">Hello {firstName}, how can we help?</h2>
+          <h2 className="text-lg desktop-only:text-xl font-semibold mb-1 text-white">Hello {firstName}, how can we help?</h2>
           <p className="text-gray-300 mb-6 text-sm leading-tight">
             Welcome to Your GoShorty. Here, you can easily see your policies, check past quotes, buy more cover, and make 
             changes to your preferences. Just choose an option below to get started.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-14">
+          <div className="grid grid-cols-1 tablet-only:grid-cols-2 desktop-only:grid-cols-2 gap-4 px-2 desktop-only:px-14">
             {dashboardCards.map((card, index) => (
               <DashboardCard 
                 key={index}
@@ -88,13 +88,14 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 w-full">
-     
-     <div className="w-full md:w-3/4 bg-[whiterounded-lg  overflow-hidden">
+    <div className="flex flex-col desktop-only:flex-row gap-4 w-full">
+      {/* Main content */}
+      <div className="w-full desktop-only:w-3/4 bg-[white] rounded-lg overflow-hidden">
         {mainContent}
       </div>
+      
       {/* Sidebar */}
-      <div className="dashboard-sidebar w-full md:w-1/4 relative">
+      <div className="dashboard-sidebar w-full desktop-only:w-1/4 relative mt-4 desktop-only:mt-0">
           <h2 className="dashboard-sidebar-header">New quote</h2>
           {/* This button in sidebar now correctly navigates, which then triggers Dashboard re-render */}
           <button 
@@ -106,64 +107,20 @@ const Dashboard: React.FC = () => {
           <p className="dashboard-sidebar-instructions">
             Enter a vehicle registration below to get a new quote:
           </p>
-          <div className="dashboard-sidebar-input-wrap flex justify-center  h-12 text-xl ">
+          <div className="dashboard-sidebar-input-wrap flex justify-center h-12 text-xl">
               <img src={ukRegIcon} alt="UK reg" />          
             <input 
               type="text" 
               placeholder="ENTER REG" 
-              className=" w-full text-3xl text-center font-bold"
+              className="w-full text-3xl text-center font-bold"
             />
           </div>
-          <div className="flex  w-full justify-center ">
-            <button className="dashboard-sidebar-btn text-xl font-bold">
+          <div className="flex w-full justify-center">
+            <button className="dashboard-sidebar-btn text-xl font-bold" 
+            onClick={() => window.open('https://your.goshorty.co.uk/', '_blank')}
+            >
               Get a Quote <ArrowRightCircle size={16} />
             </button>
-          </div>
-          <div className="dashboard-sidebar-prev-label">
-            Or click on one of your previous registrations:
-          </div>
-          <div className="dashboard-sidebar-prev-grid">
-          
-          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
-            <div className="bg-blue-600 text-white text-xs  h">
-            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
-            </div>
-            <div className="flex items-center space-x-2 p-1">
-           
-              <span>N795ENB</span>
-            </div>
-          </div>
-
-          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
-            <div className="bg-blue-600 text-white text-xs  h">
-            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
-            </div>
-            <div className="flex items-center space-x-2 p-1">
-           
-              <span>VUI3PXY</span>
-            </div>
-          </div>
-
-          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
-            <div className="bg-blue-600 text-white text-xs  h">
-            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
-            </div>
-            <div className="flex items-center space-x-2 p-1">
-           
-              <span>VUI3PXY</span>
-            </div>
-          </div>
-
-          <div className="bg-yellow-400 text-black  rounded text-center font-bold flex items-center justify-center border-2 border-blue-800">
-            <div className="bg-blue-600 text-white text-xs  h">
-            <img src={ukRegIcon} alt="UK Flag" className="w-6 h-8" />
-            </div>
-            <div className="flex items-center space-x-2 p-1">
-           
-              <span>VUI3PXY</span>
-            </div>
-          </div>
-         
           </div>
       </div>
     </div>

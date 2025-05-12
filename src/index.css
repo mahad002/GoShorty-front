@@ -2,18 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom view classes for different screen sizes */
+.mobile-only-view {
+  display: none;
+}
+
+.tablet-only-view {
+  display: none;
+}
+
+.desktop-only-view {
+  display: none;
+}
+
+/* Combined view classes */
+.desktop-only-view.tablet-only-view {
+  display: none;
+}
+
+/* Mobile view (below 823px) */
+@media (max-width: 822px) {
+  .mobile-only-view {
+    display: block;
+  }
+}
+
+/* Tablet view (823px to 1261px) */
+@media (min-width: 823px) and (max-width: 1261px) {
+  .tablet-only-view {
+    display: block;
+  }
+  
+  .desktop-only-view.tablet-only-view {
+    display: block;
+  }
+  
+  .tablet-only-view\:px-12 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+/* Desktop view (1262px and above) */
+@media (min-width: 1262px) {
+  .desktop-only-view {
+    display: block;
+  }
+  
+  .desktop-only-view.tablet-only-view {
+    display: block;
+  }
+  
+  .desktop-only-view\:px-16 {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+  
+  .desktop-only-view\:py-10 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+/* Custom breakpoint classes */
+@media (max-width: 822px) {
+  .mobile-only\:flex {
+    display: flex !important;
+  }
+  .mobile-only\:block {
+    display: block !important;
+  }
+  .mobile-only\:justify-center {
+    justify-content: center !important;
+  }
+  .mobile-only\:hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: 823px) and (max-width: 1261px) {
+  .tablet-only\:block {
+    display: block !important;
+  }
+  .tablet-only\:flex {
+    display: flex !important;
+  }
+  .tablet-only\:hidden {
+    display: none !important;
+  }
+  .tablet-only\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .tablet-only\:flex-col {
+    flex-direction: column !important;
+  }
+  .tablet-only\:justify-center {
+    justify-content: center !important;
+  }
+  .tablet-only\:items-center {
+    align-items: center !important;
+  }
+}
+
+@media (min-width: 1262px) {
+  .desktop-only\:flex {
+    display: flex !important;
+  }
+  .desktop-only\:flex-row {
+    flex-direction: row !important;
+  }
+  .desktop-only\:hidden {
+    display: none !important;
+  }
+  .desktop-only\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .desktop-only\:w-3\/4 {
+    width: 75% !important;
+  }
+  .desktop-only\:w-1\/4 {
+    width: 25% !important;
+  }
+  .desktop-only\:px-28 {
+    padding-left: 7rem !important;
+    padding-right: 7rem !important;
+  }
+  .desktop-only\:px-14 {
+    padding-left: 3.5rem !important;
+    padding-right: 3.5rem !important;
+  }
+  .desktop-only\:px-16 {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+  .desktop-only\:text-2xl {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+  .desktop-only\:text-xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+  .desktop-only\:text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+  .desktop-only\:mt-0 {
+    margin-top: 0px !important;
+  }
+}
+
+/* Default state for all views - hide everything initially */
+.mobile-only\:block,
+.tablet-only\:block,
+.desktop-only\:flex {
+  display: none;
+}
+
 @layer utilities {
   .form-main-container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   
   @media (min-width: 640px) {
     .form-main-container {
       max-width: 640px;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
     }
   }
   
@@ -38,7 +197,7 @@
     max-width: 800px;
     background-color: #1d1e2c;
     background-size: cover;
-    padding: 1.25rem;
+    padding: 0.75rem;
     text-align: center;
     color: #fff;
   }
@@ -80,14 +239,8 @@
   }
 
   .base-button {
-    border-radius: 9999px;
-    border-width: 2px;
-    font-family: 'TT Norms Pro Serif DemiBold', serif;
-    letter-spacing: .05em;
-    padding: .5rem .75rem;
-    text-align: center;
-    transition-duration: .5s;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    @apply rounded-full text-center;
+    transition: none !important;
   }
 
   @media (min-width: 768px) {
@@ -116,15 +269,12 @@
   }
 
   .button-style-primary {
-    --tw-border-opacity: 1;
-    border-color: #70ed9b;
-    border-color: rgb(112 237 155 / var(--tw-border-opacity));
-    --tw-bg-opacity: 1;
-    background-color: #70ed9b;
-    background-color: rgb(112 237 155 / var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: #1d1e2c;
-    color: rgb(29 30 44 / var(--tw-text-opacity));
+    @apply bg-[#70ed9b] text-black;
+  }
+
+  .button-style-primary:hover {
+    @apply bg-[#70ed9b] text-black;
+    transform: none !important;
   }
 
   .base-button-full-width {
@@ -231,12 +381,13 @@ body {
     align-items: center;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.25rem 1.25rem;
+    padding: 1.25rem 0.5rem;
   }
 
   @media (min-width: 640px) {
     .header-wrapper-inner {
       max-width: 640px;
+      padding: 1.25rem 1.25rem;
     }
   }
 
@@ -548,7 +699,13 @@ body {
 .dashboard-main-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-main-links {
+    gap: 2rem;
+  }
 }
 
 .dashboard-main-link {
@@ -556,6 +713,15 @@ body {
   cursor: pointer;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s ease;
+  font-size: 0.9rem;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-main-link {
+    font-size: 1rem;
+    padding: 0;
+  }
 }
 
 .dashboard-main-link:hover {
@@ -586,7 +752,14 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   padding: 24px;
-  height: 60vh; /* Adjusted from 50vh for a little longer sidebar */
+  height: auto;
+  min-height: 400px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-sidebar {
+    height: 60vh;
+  }
 }
 
 /* Background image with overlay */
@@ -873,4 +1046,11 @@ body {
 .dashboard-card-inner {
   position: relative; /* Ensure content is above the pseudo-element overlay */
   z-index: 1;
+}
+
+/* Disable all hover effects */
+button:hover, 
+a:hover {
+  transform: none !important;
+  transition: none !important;
 }

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Quote } from 'lucide-react';
+import quoteIcon from '../assets/quote-icon.svg';
 import Logo from './Logo';
+import Menu from './Menu';
+import { Menu as MenuIcon } from 'lucide-react';
 
 const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="header-wrapper">
       <div className="header-bar-wrapper">
@@ -14,15 +18,23 @@ const Navbar: React.FC = () => {
           <li><a href="https://goshorty.co.uk/contact" target="_blank" rel="noopener">Contact us</a></li>
         </ul>
       </div>
-      <div className="header-wrapper-inner">
+      <div className="flex justify-around items-center header-wrapper-inner">
         <div className="w-[90px] md:hidden">
-          <Quote className="h-12 w-12 text-[#00AEEF]" />
+          <img src={quoteIcon} alt="Quote Icon" className="text-[#00AEEF]" />
         </div>
-        <div>
+        <div className="flex justify-center md:justify-start">
           <Logo />
         </div>
-        <div className="w-[90px]" />
+        <div className="w-[90px] flex justify-end items-center">
+          <button 
+            onClick={() => setIsMenuOpen(true)}
+            className="md:hidden p-2"
+          >
+            <MenuIcon className="w-8 h-8" />
+          </button>
+        </div>
       </div>
+      <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </div>
   );
 };

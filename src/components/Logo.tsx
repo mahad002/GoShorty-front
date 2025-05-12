@@ -4,7 +4,7 @@ import logo from '../assets/logo.svg';
 
 const Logo: React.FC = () => {
   return (
-    <Link to="/" className="flex items-center">
+    <Link to="/" className="flex items-center justify-center md:justify-start">
       <img 
         src={logo}
         alt="GoShorty Insurance"

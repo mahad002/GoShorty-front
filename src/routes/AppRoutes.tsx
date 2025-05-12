@@ -66,10 +66,9 @@ const AppRoutes: React.FC = () => {
         path="/quotes" 
         element={
           <ProtectedRoute>
-            {/* Decide if Dashboard should also handle /quotes or if QuotesPage is a distinct layout */}
-            {/* For now, assuming Dashboard can also handle /quotes similarly if desired, or use QuotesPage */}
+    
             <Dashboard />
-            {/* <QuotesPage /> */}
+     
           </ProtectedRoute>
         } 
       />
