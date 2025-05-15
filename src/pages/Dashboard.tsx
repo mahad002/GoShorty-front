@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { policyService } from '../service';
 import { ArrowRightCircle } from 'lucide-react';
 // Import local SVG files
 import carIcon from '../assets/car-icon.svg';
@@ -18,10 +19,54 @@ const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const [policyCounts, setPolicyCounts] = useState({
+    livePolicies: 0,
+    expiredPolicies: 0,
+    allPolicies: 0,
+    lastUpdated: new Date().toLocaleString('en-GB')
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  
   const userName = user?.name || 'Mohammed Bhatti';
-  const firstName =  'Mohammed';
+  const firstName = userName.split(' ')[0] || 'Mohammed';
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate().toString().padStart(2, '0')}/${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}, ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
+
+  // Fetch policy counts when dashboard loads
+  useEffect(() => {
+    const fetchPolicyCounts = async () => {
+      setLoading(true);
+      try {
+        const response = await policyService.getPolicyCounts();
+        if (response.success) {
+          setPolicyCounts({
+            livePolicies: response.data.liveCount || 0,
+            expiredPolicies: response.data.expiredCount || 0,
+            allPolicies: response.data.totalCount || 0,
+            lastUpdated: new Date().toLocaleString('en-GB')
+          });
+        } else if (response.liveCount !== undefined) {
+          // Direct response without data wrapper
+          setPolicyCounts({
+            livePolicies: response.liveCount || 0,
+            expiredPolicies: response.expiredCount || 0,
+            allPolicies: response.totalCount || 0,
+            lastUpdated: new Date().toLocaleString('en-GB')
+          });
+        } else {
+          setError('Failed to fetch policy counts');
+        }
+      } catch (err) {
+        setError('An error occurred while fetching policy counts');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPolicyCounts();
+  }, []);
 
   // dashboardCards are defined here but only used in the 'else' block for mainContent.
   // Consider if they should be passed down or if the default view always shows them.
@@ -29,7 +74,7 @@ const Dashboard: React.FC = () => {
     {
       icon: carIcon,
       title: "View your policies",
-      description: "Review your current policies with GoShorty, including the option to download the associated documents for each policy.",
+      description: `Review your ${policyCounts.allPolicies} current policies with GoShorty, including the option to download the associated documents for each policy.`,
       onClick: () => navigate('/policies') // Ensures navigation
     },
     {
@@ -71,17 +116,28 @@ const Dashboard: React.FC = () => {
             Welcome to Your GoShorty. Here, you can easily see your policies, check past quotes, buy more cover, and make 
             changes to your preferences. Just choose an option below to get started.
           </p>
-          <div className="grid grid-cols-1 tablet-only:grid-cols-2 desktop-only:grid-cols-2 gap-4 px-2 desktop-only:px-14">
-            {dashboardCards.map((card, index) => (
-              <DashboardCard 
-                key={index}
-                icon={card.icon}
-                title={card.title}
-                description={card.description}
-                onClick={card.onClick}
-              />
-            ))}
-          </div>
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
+          {loading ? (
+            <div className="flex justify-center items-center py-8">
+              <div className="h-12 w-12 border-4 border-t-white border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 tablet-only:grid-cols-2 desktop-only:grid-cols-2 gap-4 px-2 desktop-only:px-14">
+              {dashboardCards.map((card, index) => (
+                <DashboardCard 
+                  key={index}
+                  icon={card.icon}
+                  title={card.title}
+                  description={card.description}
+                  onClick={card.onClick}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );

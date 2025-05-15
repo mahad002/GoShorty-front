@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import LoginPage from '../pages/LoginPage';
 import Dashboard from '../pages/Dashboard';
+import PolicyDetail from '../components/PolicyDetail';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -63,12 +64,18 @@ const AppRoutes: React.FC = () => {
         } 
       />
       <Route 
+        path="/policies/:id" 
+        element={
+          <ProtectedRoute>
+            <PolicyDetail />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
         path="/quotes" 
         element={
           <ProtectedRoute>
-    
             <Dashboard />
-     
           </ProtectedRoute>
         } 
       />

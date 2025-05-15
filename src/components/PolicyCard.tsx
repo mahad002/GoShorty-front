@@ -2,7 +2,7 @@ import React from 'react';
 import { Car, ChevronRight, ArrowRightCircle as CircleArrowRight } from 'lucide-react';
 import DocumentIcon from '../assets/documents-icon.svg'; // Assuming SVGR setup
 import UKFlag from '../assets/veh-reg-uk.png';
-
+import { useNavigate } from 'react-router-dom';
 export interface Policy {
   id: string;
   vehicle: string;
@@ -13,12 +13,19 @@ export interface Policy {
   type: string; // e.g., 'Car'
 }
 
+
 interface PolicyCardProps {
   policy: Policy;
 }
 
 const PolicyCard: React.FC<PolicyCardProps> = ({ policy }) => {
   const isExpired = policy.status === 'Expired';
+
+  const navigate = useNavigate();
+
+  const handleDocumentsClick = () => {
+    navigate(`/policies/${policy.id}`);
+  };
 
   return (
     <>
@@ -141,7 +148,7 @@ const PolicyCard: React.FC<PolicyCardProps> = ({ policy }) => {
               </p>
             </div>
             <div className="flex space-x-3">
-              <button className="flex items-center space-x-2 border border-gray-500 hover:border-gray-400 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <button onClick={handleDocumentsClick} className="flex items-center space-x-2 border border-gray-500 hover:border-gray-400 text-white px-4 py-2 rounded-full text-sm font-medium">
                 <span>Documents</span>
                 <ChevronRight size={16} />
                 <img src={DocumentIcon} alt="Documents" className="w-5 h-5" />
@@ -164,7 +171,7 @@ const PolicyCard: React.FC<PolicyCardProps> = ({ policy }) => {
               </p>
             </div>
             <div className="flex justify-center gap-3">
-              <button className="flex-1 flex items-center justify-center space-x-1 border border-gray-500 hover:border-gray-400 text-white px-2 py-2 rounded-full text-xs font-medium">
+              <button onClick={handleDocumentsClick} className="flex-1 flex items-center justify-center space-x-1 border border-gray-500 hover:border-gray-400 text-white px-2 py-2 rounded-full text-xs font-medium">
                 <span>Documents</span>
                 <ChevronRight size={14} />
                 <img src={DocumentIcon} alt="Documents" className="w-4 h-4" />

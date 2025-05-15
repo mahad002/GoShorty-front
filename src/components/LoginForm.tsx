@@ -50,8 +50,6 @@ const LoginForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      console.log('Attempting login with:', formData);
-      
       // Call the login function from auth context
       const success = await login({
         email: formData.email,
@@ -61,11 +59,9 @@ const LoginForm: React.FC = () => {
       });
       
       if (success) {
-        console.log('Login successful, navigating to dashboard');
         // If login is successful, navigate to dashboard
         navigate('/portal');
       } else {
-        console.error('Login failed - invalid credentials');
         setError('Invalid login details. Please check your information and try again.');
       }
     } catch (error) {
@@ -188,7 +184,16 @@ const LoginForm: React.FC = () => {
               )}
             </button>
             
-           
+            {/* For development purposes - add a hidden button that appears only in dev mode */}
+            {process.env.NODE_ENV === 'development' && (
+              <button 
+                type="button" 
+                onClick={fillTestData} 
+                className="text-sm text-gray-400 underline mt-4"
+              >
+                Fill test data
+              </button>
+            )}
           </form>
         )}
       </div>

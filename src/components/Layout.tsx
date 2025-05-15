@@ -18,7 +18,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isAuthenticatedRoute = location.pathname === '/dashboard' || 
                               location.pathname === '/policies' ||
                               location.pathname === '/quotes' ||
-                              location.pathname === '/portal';
+                              location.pathname === '/portal' ||
+                              location.pathname.startsWith('/policies/');
   
   // Show UserNavbar for authenticated users on dashboard routes
   const showUserNavbar = isAuthenticated && isAuthenticatedRoute;

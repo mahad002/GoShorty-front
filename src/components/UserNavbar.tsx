@@ -5,9 +5,12 @@ import car from '../assets/car-icon.svg';
 import userIcon from '../assets/icon-user.svg';
 
 const UserNavbar: React.FC = () => {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
+  
+  // Get user name from auth context or use default
+  const userName = user?.name || 'Mohammed Bhatti';
 
   return (
     <div className="base-card bg-[#1d1e2c] w-full p-0 m-0 text-white">
@@ -17,7 +20,7 @@ const UserNavbar: React.FC = () => {
           <div className="dashboard-welcome-text flex items-center">
             <img src={car} alt="GoShorty Car Icon" className="mr-2" />
             <div className="sub-header-text md:text-left">
-              Hi, Mr Mohammed Bhatti, welcome to <em>Your GoShorty</em>
+              Hi, Mr {userName}, welcome to <em>Your GoShorty</em>
             </div>
           </div>
           <div>
@@ -55,7 +58,7 @@ const UserNavbar: React.FC = () => {
           <div className="dashboard-welcome-text w-full flex items-center justify-center mb-4">
             <img src={car} alt="GoShorty Car Icon" className="mr-2" />
             <div className="sub-header-text">
-              Hi, Mr Mohammed Bhatti, welcome to <em>Your GoShorty</em>
+              Hi, Mr {userName}, welcome to <em>Your GoShorty</em>
             </div>
           </div>
           <div className="w-full">
