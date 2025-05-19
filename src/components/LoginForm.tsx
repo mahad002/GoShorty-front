@@ -1,22 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRightCircle as CircleArrowRight } from 'lucide-react';
 import { Loader2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const LoginForm: React.FC = () => {
+interface LoginFormProps {
+  initialEmail?: string | null;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ initialEmail = null }) => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    email: '',
+    email: initialEmail || '',
     surname: '',
     dateOfBirth: '',
     postcode: '',
     rememberDetails: false
   });
+
+  // Update email field if initialEmail prop changes
+  useEffect(() => {
+    if (initialEmail) {
+      setFormData(prev => ({ ...prev, email: initialEmail }));
+    }
+  }, [initialEmail]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;

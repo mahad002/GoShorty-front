@@ -69,6 +69,23 @@ class AuthService {
       };
     }
   }
+
+  // Check if user exists
+  async checkUser(params) {
+    try {
+      const response = await axios.post(`${API_URL}/users/check`, params);
+      return {
+        success: true,
+        exists: response.data.user
+      };
+    } catch (error) {
+      return {
+        success: false,
+        exists: false,
+        error: error.response?.data?.message || 'Failed to check user'
+      };
+    }
+  }
 }
 
 class PolicyService {

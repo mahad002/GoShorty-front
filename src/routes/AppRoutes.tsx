@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import LoginPage from '../pages/LoginPage';
 import Dashboard from '../pages/Dashboard';
 import PolicyDetail from '../components/PolicyDetail';
+import NotFoundPage from '../pages/NotFoundPage';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -57,7 +58,7 @@ const AppRoutes: React.FC = () => {
       />
       <Route 
         path="/policies" 
-        element={ // Changed to render Dashboard for /policies
+        element={
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>
@@ -79,8 +80,9 @@ const AppRoutes: React.FC = () => {
           </ProtectedRoute>
         } 
       />
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="/404" element={<NotFoundPage />} />
+      <Route path="/" element={<Navigate to="/404" replace />} />
+      <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
   );
 };

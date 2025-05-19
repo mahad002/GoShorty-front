@@ -18,6 +18,7 @@ interface PolicyDocument {
 
 interface PolicyDetailData {
   id: string;
+  policyNumber: string;
   vehicle: string;
   registration: string;
   coverStart: string;
@@ -83,6 +84,7 @@ const PolicyDetail: React.FC = () => {
           
           setPolicy({
             id: policyData._id || policyData.id || policyData.policyNumber,
+            policyNumber: policyData.policyNumber || '',
             vehicle: policyData.vehicle,
             registration: policyData.registration,
             coverStart: policyData.coverStart,
@@ -279,7 +281,7 @@ const PolicyDetail: React.FC = () => {
               <div className="flex flex-row gap-8 mb-6">
                 <div className="flex-1">
                   <p className="text-sm text-gray-400">Policy number:</p>
-                  <p className="font-semibold">{policy.id}</p>
+                  <p className="font-semibold">{policy.policyNumber}</p>
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-gray-400">Cover start:</p>
@@ -312,7 +314,7 @@ const PolicyDetail: React.FC = () => {
               <div className="flex flex-row gap-6 mb-6">
                 <div className="flex-1">
                   <p className="text-sm text-gray-400">Policy number:</p>
-                  <p className="font-semibold">{policy.id}</p>
+                  <p className="font-semibold">{policy.policyNumber}</p>
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-gray-400">Cover start:</p>
@@ -345,7 +347,7 @@ const PolicyDetail: React.FC = () => {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
                   <p className="text-xs text-gray-400">Policy number:</p>
-                  <p className="font-semibold text-sm">{policy.id}</p>
+                  <p className="font-semibold text-sm">{policy.policyNumber}</p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-400">Vehicle:</p>
